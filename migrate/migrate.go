@@ -1,17 +1,17 @@
 package main
 
 import (
-	"blogpostApi/iniitalizers"
+	"blogpostApi/initializers"
 	"blogpostApi/models"
 	"fmt"
 )
 
 func init() {
-	iniitalizers.LoadEnvVariables()
-	iniitalizers.ConnectToDB()
+	initializers.LoadEnvVariables()
+	initializers.ConnectToDB()
 }
 
 func main() {
-	iniitalizers.DB.AutoMigrate(&models.Post{})
+	initializers.DB.AutoMigrate(&models.Post{})
 	fmt.Println("Successfully performed migration.")
 }

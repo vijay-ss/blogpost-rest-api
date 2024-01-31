@@ -1,7 +1,7 @@
 package controllers
 
 import (
-	"blogpostApi/iniitalizers"
+	"blogpostApi/initializers"
 	"blogpostApi/models"
 
 	"github.com/gin-gonic/gin"
@@ -19,7 +19,7 @@ func PostsCreate(c *gin.Context) {
 	// create a post
 	post := models.Post{Title: body.Title, Body: body.Body}
 
-	result := iniitalizers.DB.Create(&post) // pass pointer of data to Create
+	result := initializers.DB.Create(&post) // pass pointer of data to Create
 	if result.Error != nil {
 		c.Status(400)
 		return
@@ -34,7 +34,7 @@ func PostsCreate(c *gin.Context) {
 func PostsIndex(c *gin.Context) {
 	// get the posts
 	var posts []models.Post
-	iniitalizers.DB.Find(&posts)
+	initializers.DB.Find(&posts)
 
 	// respond with retireved posts
 	c.JSON(200, gin.H{
@@ -48,7 +48,7 @@ func PostsShow(c *gin.Context) {
 
 	// get the posts
 	var post models.Post
-	iniitalizers.DB.First(&post, id)
+	initializers.DB.First(&post, id)
 
 	// respond with retireved posts
 	c.JSON(200, gin.H{
@@ -70,10 +70,10 @@ func PostsUpdate(c *gin.Context) {
 
 	// find post being updated
 	var post models.Post
-	iniitalizers.DB.First(&post, id)
+	initializers.DB.First(&post, id)
 
 	// update the post
-	iniitalizers.DB.Model(&post).Updates(models.Post{
+	initializers.DB.Model(&post).Updates(models.Post{
 		Title: body.Title,
 		Body: body.Body,
 	})
@@ -89,7 +89,7 @@ func PostsDelete(c *gin.Context) {
 	id := c.Param("id")
 
 	// delete the post
-	iniitalizers.DB.Delete(&models.Post{}, id)
+	initializers.DB.Delete(&models.Post{}, id)
 
 	// respond
 	c.Status(200)
