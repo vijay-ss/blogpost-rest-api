@@ -34,6 +34,7 @@ func RequireAuth(c *gin.Context) {
 
 	if err != nil {
 		log.Fatal(err)
+		c.AbortWithStatus(http.StatusUnauthorized)
 	}
 
 	if claims, ok := token.Claims.(jwt.MapClaims); ok {
