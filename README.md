@@ -7,6 +7,7 @@ A simple CRUD API for managing blog posts in a database.
 - GORM
 - ElephantSQL
 - CompileDaemon
+- Postman
 
 Execute the following command for CompileDaemon to run:
 - `CompileDaemon -command="./blogpostApi"`
